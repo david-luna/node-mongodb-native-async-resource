@@ -29,8 +29,7 @@ const OTEL_FILE = path.resolve(path.join(__dirname, './otel.log'));
 
 if (existsSync(OTEL_FILE)) {
   const fileContent = readFileSync(OTEL_FILE, { encoding: 'utf-8' });
-  const startIndex = fileContent.indexOf('{')
-  const fileLines = fileContent.substring(startIndex).split('\n').filter(l => l);
+  const fileLines = fileContent.split('\n').filter(l => l);
   const quotedContent = fileLines.map(quoteProps).join('\n');
   const spanList = JSON.parse(`[${quotedContent}]`);
   const children = {};

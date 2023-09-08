@@ -13,14 +13,6 @@ async function bootstrap() {
     const collection = database.collection('cats');
     const server = http.createServer(function (req, res) {
       // console.log('incoming request: %s %s %s', req.method, req.url, req.headers);
-      function resEnd(body) {
-        res.writeHead(200, {
-          server: 'trace-mongodb-cats-server',
-          'content-type': 'text/plain',
-          'content-length': Buffer.byteLength(body),
-        });
-        res.end(body);
-      }
       req.resume();
       req.on('end', function () {
         const pathname = req.url;
@@ -30,15 +22,19 @@ async function bootstrap() {
         } else if (pathname === '/getAll') {
           prom = collection.find().toArray().then(JSON.stringify);
         }
-        prom.then(resEnd);
+        prom.then((body) => {
+          res.writeHead(200, {
+            server: 'trace-mongodb-cats-server',
+            'content-type': 'text/plain',
+            'content-length': Buffer.byteLength(body),
+          });
+          res.end(body);
+        })
       });
     });
 
-    server.listen(3000, function () {
-      console.log('listening on port 3000');
-    });
+    server.listen(3000);
     server.on('close', async function () {
-      console.log('closing DB connection');
       await client.close();
     });
   } catch (err) {
