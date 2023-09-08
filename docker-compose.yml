@@ -1,0 +1,18 @@
+version: '2.1'
+
+services:
+  mongodb:
+    image: mongo:5
+    ports:
+      - "27017:27017"
+    volumes:
+      - nodemongodata:/data/db
+    healthcheck:
+      test: ["CMD", "mongo", "--quiet"]
+      interval: 1s
+      timeout: 10s
+      retries: 30
+
+volumes:
+  nodemongodata:
+    driver: local

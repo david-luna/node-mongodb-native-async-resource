@@ -1,0 +1,21 @@
+{
+  "name": "mongodb-native-async-resource-server",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "server:elastic": "node -r ./instrumentations/elastic.js server.js > ./out/elastic.log",
+    "server:otel": "node -r ./instrumentations/otel.js server.js > ./out/otel.log",
+    "mongodb:start": "docker-compose up -d",
+    "mongodb:stop": "docker-compose down"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@opentelemetry/api": "^1.4.1",
+    "@opentelemetry/auto-instrumentations-node": "^0.39.2",
+    "@opentelemetry/sdk-metrics": "^1.15.2",
+    "@opentelemetry/sdk-node": "^0.41.2",
+    "elastic-apm-node": "^4.0.0",
+    "mongodb": "^5.8.1"
+  }
+}
