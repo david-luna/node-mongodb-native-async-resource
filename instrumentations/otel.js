@@ -13,11 +13,11 @@ const {
 
 const sdk = new NodeSDK({
   traceExporter: new ConsoleSpanExporter(),
-  metricReader: new PeriodicExportingMetricReader({
-    exporter: new ConsoleMetricExporter(),
-  }),
+  // metricReader: new PeriodicExportingMetricReader({
+  //   exporter: new ConsoleMetricExporter(),
+  // }),
   instrumentations: [getNodeAutoInstrumentations({
-    // To reduce noise in the console sonce we just want
+    // To reduce noise in the console since we just want
     // http and mongodb spans
     "@opentelemetry/instrumentation-fs": {
       enabled: false,

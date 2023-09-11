@@ -25,7 +25,8 @@
 const { existsSync, readFileSync } = require('fs');
 const path = require('path');
 
-const OTEL_FILE = path.resolve(path.join(__dirname, './otel.log'));
+// XXX
+const OTEL_FILE = path.resolve(path.join(__dirname, './elastic.log'));
 
 if (existsSync(OTEL_FILE)) {
   const fileContent = readFileSync(OTEL_FILE, { encoding: 'utf-8' });
@@ -46,6 +47,7 @@ if (existsSync(OTEL_FILE)) {
   }
 
   for (const p of parents) {
+    // TODO: accept either OTel or Elastic property names.
     console.log(`trace ${p.traceId.substring(6)}`);
     console.log(`\`- span ${p.id.substring(6)} "${p.name}" (${p.attributes['http.url']} -> ${p.attributes['http.status_code']})`);
     if (children[p.id]) {
@@ -70,7 +72,7 @@ function quoteProps(str, index, arr) {
 
   let res = str.replace(/"/g, '\\"');
   res = res.replace(/'/g, '"');
-  res = res.replace(/([a-z]+): /gi, (m, g) => `"${g}":`);
+  res = res.replace(/([\w_]+): /g, (m, g) => `"${g}":`);
 
   return res;
 }
