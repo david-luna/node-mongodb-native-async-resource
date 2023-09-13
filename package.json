@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "server:elastic": "node -r ./instrumentations/elastic.js server.js > ./out/elastic.log",
-    "server:otel": "node -r ./instrumentations/otel.js server.js > ./out/otel.log",
+    "server:elastic": "node -r ./apm-setup/elastic.js server.js > ./out/elastic.log",
+    "server:otel": "node -r ./apm-setup/otel.js server.js > ./out/otel.log",
     "mongodb:start": "docker-compose up -d",
     "mongodb:stop": "docker-compose down"
   },

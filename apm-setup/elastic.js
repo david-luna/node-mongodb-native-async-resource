@@ -3,6 +3,7 @@ const apm = require('elastic-apm-node').start({
   metricsInterval: '0s',
   logLevel: 'off',
   apiRequestTime: '3s', // XXX for local usage of mockapmserver.js
+  disableSend: true, // for the ones not having a mock APM server
 });
 
 apm.addFilter((thing) => {

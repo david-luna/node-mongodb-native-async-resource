@@ -6,16 +6,9 @@ const { ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-node');
 const {
   getNodeAutoInstrumentations,
 } = require('@opentelemetry/auto-instrumentations-node');
-const {
-  PeriodicExportingMetricReader,
-  ConsoleMetricExporter,
-} = require('@opentelemetry/sdk-metrics');
 
 const sdk = new NodeSDK({
   traceExporter: new ConsoleSpanExporter(),
-  // metricReader: new PeriodicExportingMetricReader({
-  //   exporter: new ConsoleMetricExporter(),
-  // }),
   instrumentations: [getNodeAutoInstrumentations({
     // To reduce noise in the console since we just want
     // http and mongodb spans
