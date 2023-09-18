@@ -14,7 +14,7 @@ Node.js provides an API for libraries to use to preserve this context: [`AsyncRe
 # Demo time
 
 
-## Requrements
+## Requirements
 
 To work with this repo and reproduce the error you need
 - NodeJS v18.16.0+
