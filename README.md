@@ -25,7 +25,7 @@ To work with this repo and reproduce the error you need
 In order to reproduce the issue you have to follow these steps:
 
 - install dependencies by running `npm install`
-- spawn a mongodb instance by running `npm mongodb:start`
+- spawn a mongodb instance by running `npm run mongodb:start`
 - start the server with the APM setup of your choice `npm run server:${apm-setup}`
   - `otel` is for Opentelemetry
   - `elastic` id for Elastic APM agent
