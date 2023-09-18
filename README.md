@@ -63,4 +63,4 @@ There is a dedicated branch with the fix at https://github.com/david-luna/node-m
 so you can install it directly by running `npm install david-luna/node-mongodb-native#build-5.x --save`
 
 Once the installation is complete follow the steps from the section above and you will see printed the
-difference in the span hierarchy (each HTTP span will have it mongodb child span)
+difference in the span hierarchy (each HTTP span will have its mongodb child span)
